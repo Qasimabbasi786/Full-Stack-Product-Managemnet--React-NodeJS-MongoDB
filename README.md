@@ -1,0 +1,52 @@
+# 🚀 Full Stack Product Management System (MERN)
+
+A comprehensive Product Management Application built using the **MERN Stack** (MongoDB, Express, React, Node.js). This project features a secure User Authentication system and complete CRUD functionality for managing products.
+
+---
+
+## ✨ Key Features
+
+* **User Authentication:** Secure Registration and Login powered by JSON Web Tokens (JWT).
+* **Protected Routes:** Restricted access to product management features for authenticated users only.
+* **Complete CRUD Operations:**
+    * **Create:** Add new products with Title, Price, Description, and Category.
+    * **Read:** View a dynamic list of products and access individual product details.
+    * **Update:** Modify existing product information through a dedicated edit interface.
+    * **Delete:** Remove products permanently from the database.
+* **Responsive UI:** A modern, clean interface built with Tailwind CSS.
+* **State Management:** Utilizes React Context API for global authentication and token management.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS, Axios, React Router Dom |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (Mongoose ODM) |
+| **Security** | JSON Web Tokens (JWT), CORS Middleware |
+
+---
+
+## ⚙️ Installation & Setup
+
+Follow these steps to get the project running on your local machine:
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+cd your-repo-name
+```
+
+2. Backend Configuration
+- Navigate to the backend directory: cd backend
+- Install dependencies: npm install
+- Create a .env file in the backend root and add the following:
+
+```bash
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=3010
+```
+- Start the server: npm start
