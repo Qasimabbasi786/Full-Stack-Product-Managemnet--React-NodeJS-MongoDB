@@ -39,14 +39,14 @@ git clone [https://github.com/your-username/your-repo-name.git](https://github.c
 cd your-repo-name
 ```
 
-2. Backend Configuration
-- Navigate to the backend directory: cd backend
-- Install dependencies: npm install
-- Create a .env file in the backend root and add the following:
+### 2. Backend Configuration
+1. Navigate to the backend directory: cd backend
+2. Install dependencies: npm install
+3. Create a .env file in the backend root and add the following:
 
 ```bash
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=3010
 ```
-- Start the server: npm start
+4. Start the server: npm start
