@@ -76,7 +76,8 @@ PORT=3010
 ---
 
 ## 📝 API Endpoints
-|Method|Endpoint|Description|Auth Required|
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- |
 |POST|/api/auth/register|Register a new user|No|
 |POST|/api/auth/login|Login and receive JWT|No|
 |GET|/api/products|Fetch all products|Yes|
