@@ -73,3 +73,25 @@ PORT=3010
 │   │   └── App.jsx     # Routing & Provider setup
 └── .gitignore         # Ignores node_modules and env files
 ```
+---
+
+## 📝 API Endpoints
+```
+Method,Endpoint,Description,Auth Required
+POST,/api/auth/register,Register a new user,No
+POST,/api/auth/login,Login and receive JWT,No
+GET,/api/products,Fetch all products,Yes
+GET,/api/products/:id,Fetch single product details,Yes
+POST,/api/products,Create a new product,Yes
+PUT,/api/products/:id,Update an existing product,Yes
+DELETE,/api/products/:id,Delete a product,Yes
+```
+
+---
+
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
+
+---
+
+## Developed by: Muhammad Qasim
