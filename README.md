@@ -50,3 +50,23 @@ JWT_SECRET=your_secret_key
 PORT=3010
 ```
 4. Start the server: npm start
+
+### 3. Frontend Configuration
+1. Navigate to the frontend directory: cd ../frontend
+2. Install dependencies: npm install
+3. Start the development server: npm run dev
+
+## 📂 Project Structure
+├── backend/
+│   ├── models/        # Mongoose Schemas (User, Product)
+│   ├── routes/        # API Endpoints (Auth, Products)
+│   ├── middleware/    # Auth & JWT verification
+│   └── server.js      # Main server entry point
+├── frontend/
+│   ├── src/
+│   │   ├── components/ # ProtectedRoute.jsx
+│   │   ├── context/    # AuthContext.jsx
+│   │   ├── pages/      # Login, Register, Products, Details, Add/Edit
+│   │   └── App.jsx     # Routing & Provider setup
+└── .gitignore         # Ignores node_modules and env files
+
