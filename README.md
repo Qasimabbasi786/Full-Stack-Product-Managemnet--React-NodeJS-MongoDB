@@ -56,7 +56,10 @@ PORT=3010
 2. Install dependencies: npm install
 3. Start the development server: npm run dev
 
+---
+
 ## 📂 Project Structure
+```
 ├── backend/
 │   ├── models/        # Mongoose Schemas (User, Product)
 │   ├── routes/        # API Endpoints (Auth, Products)
@@ -69,4 +72,4 @@ PORT=3010
 │   │   ├── pages/      # Login, Register, Products, Details, Add/Edit
 │   │   └── App.jsx     # Routing & Provider setup
 └── .gitignore         # Ignores node_modules and env files
-
+```
