@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google fonts (UI only). */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply font-sans text-slate-900 antialiased;
+    background:
+      radial-gradient(1200px 800px at 12% 10%, rgba(14, 165, 233, 0.18), transparent 60%),
+      radial-gradient(900px 650px at 88% 18%, rgba(244, 63, 94, 0.16), transparent 55%),
+      radial-gradient(1000px 900px at 50% 100%, rgba(34, 197, 94, 0.10), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.25);
+  }
+}
+
+@layer components {
+  .ui-page {
+    @apply min-h-screen px-4 py-10 sm:px-6;
+  }
+
+  .ui-shell {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .ui-header {
+    @apply mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between;
+  }
+
+  .ui-title {
+    @apply font-display text-3xl font-semibold tracking-tight sm:text-4xl;
+  }
+
+  .ui-subtitle {
+    @apply mt-1 text-sm text-slate-600 sm:text-base;
+  }
+
+  .ui-card {
+    @apply rounded-2xl border border-slate-200/60 bg-white/70 backdrop-blur shadow-soft;
+  }
+
+  .ui-card-hover {
+    @apply transition duration-200 hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .ui-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50;
+    @apply active:translate-y-[1px];
+  }
+
+  .ui-btn-primary {
+    @apply ui-btn bg-slate-900 text-white hover:bg-slate-800;
+  }
+
+  .ui-btn-secondary {
+    @apply ui-btn bg-white/70 text-slate-900 ring-1 ring-slate-200 hover:bg-white;
+  }
+
+  .ui-btn-danger {
+    @apply ui-btn bg-rose-600 text-white hover:bg-rose-500;
+  }
+
+  .ui-btn-warn {
+    @apply ui-btn bg-amber-500 text-slate-950 hover:bg-amber-400;
+  }
+
+  .ui-input {
+    @apply w-full rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm text-slate-900 shadow-sm;
+    @apply placeholder:text-slate-400;
+    @apply transition focus:border-sky-400 focus:ring-4 focus:ring-sky-100;
+  }
+
+  .ui-textarea {
+    @apply ui-input min-h-[110px] resize-y;
+  }
+
+  .ui-badge {
+    @apply inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/70 px-2.5 py-1 text-xs font-semibold text-slate-700;
+  }
+
+  .ui-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent;
+  }
+
+  .ui-kbd {
+    @apply rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700 shadow-sm;
+  }
+}

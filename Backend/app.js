@@ -1,0 +1,31 @@
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const PORT = process.env.PORT;
+const productRoutes = require("./src/routes/productRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const connectDB = require("./src/config/db");
+
+
+// 1. Database Connect karein
+connectDB();
+
+// 2. Middleware
+app.use(cors({
+    origin: "http://localhost:5173", // Aapke frontend ka URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+app.use(express.json());
+
+
+// 3. Routes
+app.use('/api/auth', authRoutes)
+app.use('/api', productRoutes);
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+});
