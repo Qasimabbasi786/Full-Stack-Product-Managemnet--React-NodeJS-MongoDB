@@ -9,6 +9,11 @@ https://qasim-products.vercel.app/
 
 ---
 
+<img width="1600" height="819" alt="register" src="https://github.com/user-attachments/assets/94728621-9af4-4b04-9c71-22ab5bf43b2c" />
+<img width="1600" height="818" alt="login" src="https://github.com/user-attachments/assets/f48bb200-42d0-4182-a1d5-66bf0be91970" />
+<img width="1600" height="818" alt="products" src="https://github.com/user-attachments/assets/03f41d94-6fdf-43d2-bf3f-26ea9d138d19" />
+
+---
 ## ✨ Key Features
 
 * **User Authentication:** Secure Registration and Login powered by JSON Web Tokens (JWT).
