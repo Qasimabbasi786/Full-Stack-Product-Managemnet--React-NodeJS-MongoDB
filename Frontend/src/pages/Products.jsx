@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Eye, LogOut, Package, PencilLine, Plus, Tag, Trash2 } from 'lucide-react';
+import { Eye, LogOut, AlertTriangle, Package, PencilLine, Plus, Tag, Trash2, AlertCircle } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+
 
 const Products = () => {
 
@@ -21,14 +24,33 @@ const Products = () => {
                     }
                 });
                 setProducts(res.data.data);
-                console.log(res.data.data);
+                // console.log(res.data.data);
                 
             } catch (err) {
                 if (err.response?.status === 401) {
-                    alert("Session expired. Please login again."); // 
-                    logout(); // [cite: 55]
+                    toast.error("Session expired. Please login again.", {
+                        duration: 3000,
+                        position: "top-right",
+                        icon: <LogOut size={20} color="#fff" />,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#ef4444', // Red for logout/session
+                            color: '#fff',
+                        },
+                    }); 
+
+                    logout();
                 } else {
-                    alert("Failed to fetch products.");
+                     toast.error("Failed to fetch products.", {
+                        duration: 4000,
+                        position: "top-right",
+                        icon: <AlertTriangle size={20} color="#fff" />,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#f59e0b', // Amber/Orange for fetch issues
+                            color: '#fff',
+                        },
+                    });
                 }
             }
         };
@@ -46,9 +68,31 @@ const Products = () => {
                 });
                 // Delete ke baad list ko update karne ke liye:
                 setProducts(products.filter(p => p._id !== id));
-                alert("Product Deleted!");
+                
+                toast.success("Product Deleted!", {
+                  duration: 3000,
+                  position: "top-right",
+                  icon: <Trash2 size={20} color="#fff" />, 
+                  style: {
+                    borderRadius: '10px',
+                    background: '#ef4444', // Red background for delete
+                    color: '#fff',
+                    fontWeight: '500'
+                  },
+                });
+                
             } catch {
-                alert("Failed to delete product");
+                toast.error(err.response?.data?.message || "Failed to delete product", {
+                    duration: 4000,
+                    position: "top-right",
+                    icon: <AlertCircle size={20} color="#fff" />,
+                    style: {
+                      borderRadius: '10px',
+                      background: '#e11d48', // Darker red background
+                      color: '#fff',
+                      fontWeight: '500',
+                    },
+                });
             }
         }
     };
@@ -57,6 +101,11 @@ const Products = () => {
 
   return (
         <div className="ui-page">
+          <Helmet>
+            <title>Qasim's Products | Qasim's Product App</title>
+            <meta name="description" content="Qasim's Product to manage your products." />
+            <meta name="keywords" content="react, Dashboard, products, /" />
+          </Helmet>
           <div className="ui-shell">
             <div className="ui-header">
               <div>
@@ -65,7 +114,7 @@ const Products = () => {
                     <Package className="h-5 w-5" />
                   </div>
                   <div>
-                    <h1 className="ui-title">Products</h1>
+                    <h1 className="ui-title">Qasim's Products</h1>
                     <p className="ui-subtitle">
                       Manage your items with a clean, animated UI.
                       <span className="ml-2 ui-badge align-middle">

@@ -2,7 +2,10 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { AlignLeft, ArrowLeft, ArrowRight, DollarSign, PackagePlus, Tags, Type } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, DollarSign, PackagePlus, Tags, Type, CheckCircle, AlertCircle } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+
 
 const AddProduct = () => {
     const { token } = useContext(AuthContext); 
@@ -18,20 +21,54 @@ const AddProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const duration = 2000; // 2 seconds toast duration
+
         try {
             // POST request with headers [cite: 80, 86, 91]
             await axios.post("http://localhost:3010/api/products", formData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            alert("Product Added Successfully!");
-            navigate("/products"); // Success redirect [cite: 44]
+
+            // Success Toast with Lucide Icon
+            toast.success("Product Added Successfully!", {
+                duration: duration,
+                position: "top-right",
+                icon: <CheckCircle size={20} color="#fff" />,
+                style: {
+                    borderRadius: '10px',
+                    background: '#10B981', // Green background
+                    color: '#fff',
+                    fontWeight: '600'
+                },
+            });
+
+            // Redirect after notification is shown
+            setTimeout(() => {
+              navigate("/products");
+            }, duration);
+
         } catch (err) {
-            alert(err.response?.data?.message || "Failed to add product");
+            // Error Toast
+            toast.error(err.response?.data?.message || "Failed to add product", {
+                duration: 4000,
+                position: "top-right",
+                icon: <AlertCircle size={20} color="#fff" />,
+                style: {
+                    borderRadius: '10px',
+                    background: '#EF4444', // Red background
+                    color: '#fff',
+                },
+            });
         }
     };
 
     return (
         <div className="ui-page">
+          <Helmet>
+            <title>Add Product | Qasim's Product App</title>
+            <meta name="description" content="Add new product to your products list." />
+            <meta name="keywords" content="react, add, products, create" />
+          </Helmet>
           <div className="ui-shell">
             <div className="ui-header">
               <div>

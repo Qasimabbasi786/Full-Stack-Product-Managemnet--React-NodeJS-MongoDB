@@ -2,7 +2,10 @@ import React, {useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Lock, LogIn, Mail } from 'lucide-react';
+import { ArrowRight, Lock, LogIn, Mail, CheckCircle } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -15,21 +18,46 @@ const Login = () => {
         e.preventDefault();
         
         try {
+            const duration = 2500; // Define custom duration
+
             // 2. States ka data bhejien
             const res = await axios.post("http://localhost:3010/api/auth/login", { email, password });
             
             // 3. Token context mein bhejein
             login(res.data.token); 
             
-            alert("Login Successful!");
-            navigate("/products"); // Products page par bhej dein 
+            // Notification aur redirect
+            toast.success("Login Successful!", {
+              duration: duration,
+              position: "top-right",
+              icon: <CheckCircle size={20} color="#fff" />,
+              style: {
+                borderRadius: '10px',
+                background: '#10B981',
+                color: '#fff',
+                fontWeight: 'bold'
+              },
+            });
+
+            setTimeout(() => {
+              navigate("/products"); // Products page par bhej dein 
+            }, duration); // Redirect after custom duration
+
         } catch (err) {
-            alert(err.response?.data?.message || "Login Failed!");
+            toast.error(err.response?.data?.message || "Login Failed!", {
+                duration: 3000,
+                position: "top-right",
+            });
         }
     }
 
   return (
     <div className="ui-page">
+      <Helmet>
+        <title>Login | Qasim's Product App</title>
+        <meta name="description" content="Login to manage your products safely." />
+        <meta name="keywords" content="react, login, products, admin" />
+      </Helmet>
       <div className="ui-shell">
         <div className="mx-auto max-w-md animate-fade-up">
           <div className="ui-card ui-card-hover overflow-hidden">

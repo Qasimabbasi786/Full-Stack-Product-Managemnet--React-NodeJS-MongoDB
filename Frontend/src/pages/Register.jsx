@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Lock, Mail, User, UserPlus } from 'lucide-react';
+import { ArrowRight, Lock, Mail, User, UserPlus, CheckCircle } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 
 const Register = () => {
@@ -17,17 +19,43 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
+            const duration = 2500; // Define custom duration
+
             const res = await axios.post("http://localhost:3010/api/auth/register", formData);
             console.log(res.data);
-            alert("Registration Successful!"); // On success [cite: 33]
-            navigate("/login"); // Redirect to login [cite: 33]
+
+            // Notification aur redirect
+             toast.success("Register Successful!", {
+                duration: duration,
+                position: "top-right",
+                icon: <CheckCircle size={20} color="#fff" />,
+                style: {
+                  borderRadius: '10px',
+                  background: '#10B981',
+                  color: '#fff',
+                  fontWeight: 'bold'
+                },
+              });
+
+              setTimeout(() => {
+                navigate("/login"); // Redirect to login [cite: 33]
+              }, duration); // Redirect after custom duration
+
         } catch (err) {
-            console.error(err);
+            toast.error(err.response?.data?.message || "Registration Failed!", {
+              duration: 3000,
+              position: "top-right",
+            });
         }
     };
 
   return (
     <div className="ui-page">
+      <Helmet>
+        <title>Register | Qasim's Product App</title>
+        <meta name="description" content="Register to use Qasim's Product App." />
+        <meta name="keywords" content="react, SignUp, products, admin" />
+      </Helmet>
       <div className="ui-shell">
         <div className="mx-auto max-w-md animate-fade-up">
           <div className="ui-card ui-card-hover overflow-hidden">

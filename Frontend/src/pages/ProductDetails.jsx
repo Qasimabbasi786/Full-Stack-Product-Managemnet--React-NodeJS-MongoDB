@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { ArrowLeft, BadgeDollarSign, Tags } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -17,6 +19,8 @@ const ProductDetails = () => {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProduct(res.data);
+                // console.log(res.data);
+                
             } catch (err) {
                 console.error("Error fetching product details", err);
             }
@@ -28,6 +32,11 @@ const ProductDetails = () => {
 
     return (
         <div className="ui-page">
+          <Helmet>
+            <title>{product?.title ? `${product.title} | Qasim's Product App` : "Loading... | Qasim's Product App"}</title>
+            <meta name="description" content="Specific Product from the product list." />
+            <meta name="keywords" content="react, Product, products, View" />
+          </Helmet>
           <div className="ui-shell">
             <div className="mx-auto max-w-3xl animate-fade-up">
               <div className="ui-card overflow-hidden">

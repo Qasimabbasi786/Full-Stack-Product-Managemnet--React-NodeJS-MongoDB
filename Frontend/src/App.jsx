@@ -6,10 +6,12 @@ import AddProduct from './pages/AddProduct' // Naya import
 import EditProduct from './pages/EditProduct' // Naya import
 import ProtectedRoute from './components/ProtectedRoute'
 import ProductDetails from './pages/ProductDetails';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <Router>
+      <Toaster />
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />

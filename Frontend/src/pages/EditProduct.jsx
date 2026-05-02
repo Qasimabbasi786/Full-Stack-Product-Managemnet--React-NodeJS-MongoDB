@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // URL se ID nikalne ke liye
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import { AlignLeft, ArrowLeft, ArrowRight, DollarSign, PencilLine, Type } from 'lucide-react';
+import { CheckCircle, AlertCircle, RefreshCw, AlignLeft, ArrowLeft, ArrowRight, DollarSign, PencilLine, Type } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+
 
 const EditProduct = () => {
     const { id } = useParams(); // URL se :id pakar li 
@@ -34,19 +37,53 @@ const EditProduct = () => {
     // 2. Update karna 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const duration = 2000;
+
         try {
             await axios.put(`http://localhost:3010/api/products/${id}`, formData, {
                 headers: { Authorization: `Bearer ${token}` } // [cite: 87]
             });
-            alert("Product Updated!");
-            navigate("/products"); // [cite: 44]
-        } catch {
-            alert("Update failed!");
+
+            // Success Notification
+            toast.success("Product Updated Successfully!", {
+                duration: duration,
+                position: "top-right",
+                icon: <RefreshCw size={20} color="#fff" className="animate-spin-slow" />, // Update icon
+                style: {
+                    borderRadius: '10px',
+                    background: '#0ea5e9', // Sky blue color for "Update"
+                    color: '#fff',
+                    fontWeight: '600'
+                },
+            });
+
+            // Navigate after toast duration
+            setTimeout(() => {
+                navigate("/products");
+            }, duration);
+
+        } catch (err) {
+            // Error Notification
+            toast.error(err.response?.data?.message || "Update failed!", {
+                duration: 4000,
+                position: "top-right",
+                icon: <AlertCircle size={20} color="#fff" />,
+                style: {
+                    borderRadius: '10px',
+                    background: '#EF4444',
+                    color: '#fff',
+                },
+            });
         }
     };
 
     return (
         <div className="ui-page">
+          <Helmet>
+            <title>Edit Product | Qasim's Product App</title>
+            <meta name="description" content="Edit the product from the products list." />
+            <meta name="keywords" content="react, login, products, admin" />
+          </Helmet>
           <div className="ui-shell">
             <div className="ui-header">
               <div>
