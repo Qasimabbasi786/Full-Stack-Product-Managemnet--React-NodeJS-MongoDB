@@ -9,9 +9,9 @@ https://qasim-products.vercel.app/
 
 ---
 
-<img width="1600" height="819" alt="register" src="https://github.com/user-attachments/assets/94728621-9af4-4b04-9c71-22ab5bf43b2c" />
-<img width="1600" height="818" alt="login" src="https://github.com/user-attachments/assets/f48bb200-42d0-4182-a1d5-66bf0be91970" />
-<img width="1600" height="818" alt="products" src="https://github.com/user-attachments/assets/03f41d94-6fdf-43d2-bf3f-26ea9d138d19" />
+<img width="1082" height="626" alt="register" src="https://github.com/user-attachments/assets/3b8403af-6a6d-407f-aeac-3c91add699f2" />
+<img width="1067" height="577" alt="login" src="https://github.com/user-attachments/assets/03d8c866-7bcf-4a69-b09c-64cd268cbf1a" />
+<img width="1572" height="724" alt="products" src="https://github.com/user-attachments/assets/7cd5c1db-c2be-4eca-ba3e-ce995b0a2b19" />
 
 ---
 ## ✨ Key Features
