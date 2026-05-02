@@ -10,7 +10,9 @@ https://qasim-products.vercel.app/
 ---
 
 <img width="1082" height="626" alt="register" src="https://github.com/user-attachments/assets/3b8403af-6a6d-407f-aeac-3c91add699f2" />
+
 <img width="1067" height="577" alt="login" src="https://github.com/user-attachments/assets/03d8c866-7bcf-4a69-b09c-64cd268cbf1a" />
+
 <img width="1572" height="724" alt="products" src="https://github.com/user-attachments/assets/7cd5c1db-c2be-4eca-ba3e-ce995b0a2b19" />
 
 ---
