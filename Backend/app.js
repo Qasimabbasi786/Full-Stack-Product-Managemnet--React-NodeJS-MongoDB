@@ -11,12 +11,19 @@ const connectDB = require("./src/config/db");
 // 1. Database Connect karein
 connectDB();
 
-// 2. Middleware
-app.use(cors({
-    origin: "http://localhost:5173", // Aapke frontend ka URL
+
+const corsOptions = {
+    origin: [
+        "http://localhost:5173", 
+        process.env.FRONTEND_URL 
+    ], 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
-}));
+};
+
+
+// 2. Middleware
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
