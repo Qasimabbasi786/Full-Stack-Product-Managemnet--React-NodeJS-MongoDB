@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AlignLeft, ArrowLeft, ArrowRight, DollarSign, PackagePlus, Tags, Type, CheckCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
-
+import customAPI from '../api/axios';
 
 const AddProduct = () => {
     const { token } = useContext(AuthContext); 
@@ -25,7 +25,9 @@ const AddProduct = () => {
 
         try {
             // POST request with headers [cite: 80, 86, 91]
-            await axios.post("http://localhost:3010/api/products", formData, {
+            // await axios.post("http://localhost:3010/api/products", formData, {
+            await customAPI.post("/products", formData, {
+
                 headers: { Authorization: `Bearer ${token}` }
             });
 

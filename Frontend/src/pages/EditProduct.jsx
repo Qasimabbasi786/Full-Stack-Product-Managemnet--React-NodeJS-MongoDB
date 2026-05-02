@@ -5,6 +5,7 @@ import axios from 'axios';
 import { CheckCircle, AlertCircle, RefreshCw, AlignLeft, ArrowLeft, ArrowRight, DollarSign, PencilLine, Type } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import customAPI from '../api/axios'; // Custom axios instance
 
 
 const EditProduct = () => {
@@ -23,7 +24,8 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get(`http://localhost:3010/api/products/${id}`, {
+                // const res = await axios.get(`http://localhost:3010/api/products/${id}`, {
+                const res = await customAPI.get(`/products/${id}`, {
                     headers: { Authorization: `Bearer ${token}` } // [cite: 87]
                 });
                 setFormData(res.data); // Form mein purana data bhar diya
@@ -40,7 +42,8 @@ const EditProduct = () => {
         const duration = 2000;
 
         try {
-            await axios.put(`http://localhost:3010/api/products/${id}`, formData, {
+            // await axios.put(`http://localhost:3010/api/products/${id}`, formData, {
+            await customAPI.put(`/products/${id}`, formData, {
                 headers: { Authorization: `Bearer ${token}` } // [cite: 87]
             });
 

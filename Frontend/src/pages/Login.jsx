@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Lock, LogIn, Mail, CheckCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import customAPI from '../api/axios';
 
 
 const Login = () => {
@@ -21,7 +22,8 @@ const Login = () => {
             const duration = 2500; // Define custom duration
 
             // 2. States ka data bhejien
-            const res = await axios.post("http://localhost:3010/api/auth/login", { email, password });
+            // const res = await axios.post("http://localhost:3010/api/auth/login", { email, password });
+            const res = await customAPI.post("/auth/login", { email, password });
             
             // 3. Token context mein bhejein
             login(res.data.token); 

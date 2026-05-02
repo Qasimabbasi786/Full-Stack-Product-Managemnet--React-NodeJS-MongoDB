@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { ArrowLeft, BadgeDollarSign, Tags } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import customAPI from '../api/axios';
 
 
 const ProductDetails = () => {
@@ -15,7 +16,8 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get(`http://localhost:3010/api/products/${id}`, {
+                // const res = await axios.get(`http://localhost:3010/api/products/${id}`, {
+                const res = await customAPI.get(`/products/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProduct(res.data);

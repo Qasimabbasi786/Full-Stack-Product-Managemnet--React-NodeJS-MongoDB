@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, Lock, Mail, User, UserPlus, CheckCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import customAPI from '../api/axios';
 
 
 const Register = () => {
@@ -21,7 +22,8 @@ const Register = () => {
         try {
             const duration = 2500; // Define custom duration
 
-            const res = await axios.post("http://localhost:3010/api/auth/register", formData);
+            // const res = await axios.post("http://localhost:3010/api/auth/register", formData);
+            const res = await customAPI.post("/auth/register", formData);
             console.log(res.data);
 
             // Notification aur redirect

@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Eye, LogOut, AlertTriangle, Package, PencilLine, Plus, Tag, Trash2, AlertCircle } from 'lucide-react';
+import { Loader2, Eye, LogOut, AlertTriangle, Package, PencilLine, Plus, Tag, Trash2, AlertCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import customAPI from '../api/axios';
+
 
 
 const Products = () => {
@@ -13,12 +15,20 @@ const Products = () => {
 
     const [products, setProducts] = useState([]);
 
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
+          setLoading(true);
             try {
-                const res = await axios.get("http://localhost:3010/api/products", {
+                // const res = await axios.get("http://localhost:3010/api/products", {
+
+                //Pagination: 
+                // ?page=1&limit=10 || Sorting: ?sort=price&order=asc || Filtering: ?category=electronics || Search: ?search=phone   || Combine: ?page=1&limit=10&sort=price&order=asc&category=electronics&search=phone
+
+                const res = await customAPI.get("/products?limit=100", {
                     headers: {
                         Authorization: `Bearer ${token}` // [cite: 87, 91]
                     }
@@ -52,6 +62,8 @@ const Products = () => {
                         },
                     });
                 }
+            } finally {
+                setLoading(false); // Success ho ya error, loading band kar dein
             }
         };
 
@@ -63,7 +75,8 @@ const Products = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure?")) {
             try {
-                await axios.delete(`http://localhost:3010/api/products/${id}`, {
+                // await axios.delete(`http://localhost:3010/api/products/${id}`, {
+                await customAPI.delete(`/products/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 // Delete ke baad list ko update karne ke liye:
@@ -137,12 +150,20 @@ const Products = () => {
               </div>
             </div>
 
-            {products.length === 0 ? (
+            {loading ? (
+              // Loading Spinner Layout
+              <div className="flex flex-col items-center justify-center min-h-[300px] animate-fade-in">
+                <Loader2 className="h-10 w-10 text-sky-500 animate-spin" />
+                <p className="mt-4 text-slate-600 font-medium tracking-wide">Fetching Products...</p>
+              </div>
+            ) : products.length === 0 ? (
+              // No products message
               <div className="ui-card p-8 text-center animate-fade-in">
                 <p className="font-display text-lg font-semibold tracking-tight">No products yet</p>
                 <p className="mt-2 text-sm text-slate-600">Add your first product to see it listed here.</p>
               </div>
             ) : (
+              // Actual Products Grid
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {products.map((product, idx) => (
                   <div
